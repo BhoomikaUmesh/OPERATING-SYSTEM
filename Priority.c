@@ -130,3 +130,35 @@ int main() {
   printf("\n Average Turnaround Time: %f\n", average_turnaround_time);
 
   return 0;
+}
+/*Output:
+Enter the total number of Processes: 3
+
+Please Enter the  Burst Time and Priority of each process:
+
+Enter the details of the process A 
+Enter the burst time: 5
+Enter the priority: 2
+
+Enter the details of the process B 
+Enter the burst time: 6
+Enter the priority: 1
+
+Enter the details of the process C 
+Enter the burst time: 7
+Enter the priority: 3
+
+
+Process_name     Burst Time      Waiting Time     Turnaround Time
+------------------------------------------------------------
+          C               7              0               7
+-----------------------------------------------------------
+          A               5              7               12
+-----------------------------------------------------------
+          B               6              12              18
+-----------------------------------------------------------
+
+
+ Average Waiting Time : 6.333333
+ Average Turnaround Time: 12.333333*/
+ 

@@ -33,3 +33,12 @@ int main()
     }
 return 0;
 }
+/*Output
+child process:Hello,i am the child!
+child process:My PID is 16193
+child process:My parent's PID is 16192
+parent process:Hello i am the parent!
+parent process:My PID is 16192
+parent process:My child's PID is 16193
+Parent process: Child process terminated normally.
+*/
