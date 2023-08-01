@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<stdilib.h>
+#include<stdlib.h>
 int main()
 {
     int RQ[100],i,n,TotalHeadMoment=0,initial;
