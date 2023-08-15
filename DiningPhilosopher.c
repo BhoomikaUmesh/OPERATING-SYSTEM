@@ -14,7 +14,7 @@ int main()
     int i, status_message;
     void *msg;
     //initialize the semaphore array
-    for(i=1;i<num_chopsticks;i++)
+    for(i=1;i<=num_chopsticks;i++)
     {
         status_message=pthread_mutex_init(&chopstick[i],NULL);
         //checkl if the mutex is initialized successfully
@@ -35,7 +35,7 @@ int main()
         }
     }
     //wait for all philosopher threads to complete executing (finish dining) before closing the program
-    for(i=1;i<num_philosopher[i];i++)
+    for(i=1;i<=num_philosophers;i++)
     {
         status_message=pthread_join(philosopher[i],&msg);
         if(status_message!=0)

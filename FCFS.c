@@ -19,8 +19,8 @@ int main()
             wt[i]=star[i]-arr[i];
             finish[i]=star[i]+bur[i];
             tat[i]=finish[i]-arr[i];     
-       }
-       else{
+        }
+        else{
             star[i]=finish[i-1];
             wt[i]=star[i]-arr[i];
             finish[i]=star[i]+bur[i];
@@ -37,6 +37,7 @@ int main()
       printf("\nAverage waiting time : %f",(float)totwt/n);
       printf("\nAverage turn around time : %f", (float)tottat/n);
 }
+
 /*Output
 Enter the number of processes :
 3

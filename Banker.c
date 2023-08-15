@@ -73,6 +73,8 @@ void main(){
     // getch();
 }
 
+
+
 /*output:
  Enter the number of resources : 3
 

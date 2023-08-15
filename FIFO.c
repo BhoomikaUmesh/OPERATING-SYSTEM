@@ -13,7 +13,7 @@ int main()
     frame[i]=-1;
     j=0;
     printf("\t Input \t page frames\n");
-    for(i=1;i<=n;i++)
+    for(i=0;i<n;i++)
     {
         printf("%d\t\t",a[i]);
         avail=0;
@@ -34,6 +34,35 @@ int main()
     printf("Page fault is %d",fault);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*output:
 

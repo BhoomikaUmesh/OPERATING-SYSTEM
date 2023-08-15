@@ -2,7 +2,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int main() { 
+int main() 
+{ 
     pid_t pid;
     int status;
     

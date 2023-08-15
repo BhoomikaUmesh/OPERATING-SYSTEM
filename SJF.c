@@ -1,100 +1,57 @@
-#include<stdio.h>
-void printer(int processes[],int n,int burst_time[],int arrival_time[])
+#include <stdio.h>
+int main()
 {
-    int WT[n],TAT[n],total_WT=0,total_TAT=0,completion_time[n];
-    for (int i = 0; i < n; i++)//calculating times
+    int time, bt[10], at[10], sumbt = 0, smallest, n, i;
+    int sumt = 0, sumw = 0;
+    printf("enter the no of processes : ");
+    scanf("%d", &n);
+    for (i = 0; i < n; i++)
     {
-        if(i==0)
-        {
-            WT[0]=0;
-            completion_time[0]=burst_time[0]+arrival_time[0];
-            TAT[0]=completion_time[0]-arrival_time[0];
-            total_TAT=TAT[0];
-            continue;
-        }
-        if(completion_time[i-1]<arrival_time[i])
-        {
-            completion_time[i]=arrival_time[i]+burst_time[i];
-        }
-        else
-        {
-            completion_time[i]=completion_time[i-1]+burst_time[i];
-        }
-        TAT[i]=completion_time[i]-arrival_time[i];
-        total_TAT+=TAT[i];
-        WT[i]=TAT[i]-burst_time[i];
-        total_WT+=WT[i];
+        printf("the arrival time for process P%d : ", i + 1);
+        scanf("%d", &at[i]);
+        printf("the burst time for process P%d : ", i + 1);
+        scanf("%d", &bt[i]);
+        sumbt += bt[i];
     }
-    printf("Processes\tAT\tBT\tWT\tTAT\tCT\n");
-    for (int i = 0; i < n; i++)
+    bt[9] = 9999;
+    for (time = 0; time < sumbt;)
     {
-        printf("%d\t\t%d\t%d\t%d\t%d\t%d\n",processes[i],arrival_time[i],burst_time[i],WT[i],TAT[i],completion_time[i]);
-    }
-    printf("AVG waiting time: %2f\n",(float)total_WT/n);
-    printf("AVG turnaround time: %2f\n",(float)total_TAT/n);
-    printf("\n");
-}
-void sjf(int processes[],int n,int burst_time[],int arrival_time[])
-{
-    int WT[n],TAT[n],total_WT=0,completion_time[n],total_TAT=0;
-    for (int i = 0; i < n; i++)
-    {
-        int shortest_job_index=i;
-        for (int j = i+1; j < n; j++)
+        smallest = 9;
+        for (i = 0; i < n; i++)
         {
-            if (burst_time[j]<burst_time[shortest_job_index])
-            {
-                shortest_job_index=j;
-            }
+            if (at[i] <= time && bt[i] > 0 && bt[i] < bt[smallest])
+                smallest = i;
         }
-        int temp=burst_time[i];
-        burst_time[i]=burst_time[shortest_job_index];
-        burst_time[shortest_job_index]=temp;
-        
-        temp=processes[i];
-        processes[i]=processes[shortest_job_index];
-        processes[shortest_job_index]=temp;
-
-        temp=arrival_time[i];
-        arrival_time[i]=arrival_time[shortest_job_index];
-        arrival_time[shortest_job_index]=temp;
+        printf("P[%d]\t|\t%d\t|\t%d\n", smallest + 1, time + bt[smallest] - at[smallest], time - at[smallest]);
+        sumt += time + bt[smallest] - at[smallest];
+        sumw += time - at[smallest];
+        time += bt[smallest];
+        bt[smallest] = 0;
     }
-    printf("SJF agorithm\n");
-    printer(processes,n,burst_time,arrival_time);
-}
-void main()
-{
-    int n;
-    int quantum;
-    printf("Enter the number of processes: ");
-    scanf("%d",&n);
-    int processes[n],burst_time[n],arrival_time[n];
-    for (int i = 0; i < n; i++)
-    {
-        printf("Enter the arrival time for process %d:",i+1);
-        scanf("%d",&arrival_time[i]);
-        printf("Enter the Burst time for processes %d:",i+1);
-        scanf("%d",&burst_time[i]);
-        processes[i]=i+1;
-    }
-    sjf(processes,n,burst_time,arrival_time);
+    printf("\n\n average waiting time = %f", sumw * 1.0 / n);
+    printf("\n\n average turnaround time = %f", sumt * 1.0 / n);
+    return 0;
 }
 /*
-Enter the number of processes: 4
-Enter the arrival time for process 1:1
-Enter the Burst time for processes 1:3
-Enter the arrival time for process 2:2
-Enter the Burst time for processes 2:4
-Enter the arrival time for process 3:1
-Enter the Burst time for processes 3:2
-Enter the arrival time for process 4:4
-Enter the Burst time for processes 4:4
-SJF agorithm
-Processes       AT      BT      WT      TAT     CT
-3               1       2       0       2       3
-1               1       3       2       5       6
-2               2       4       4       8       10
-4               4       4       6       10      14
-AVG waiting time: 3.000000
-AVG turnaround time: 6.250000
-*/
+enter the no of processes : 5
+the arrival time for process P1 : 2
+the burst time for process P1 : 1
+the arrival time for process P2 : 1
+the burst time for process P2 : 5
+the arrival time for process P3 : 4
+the burst time for process P3 : 1
+the arrival time for process P4 : 0
+the burst time for process P4 : 6
+the arrival time for process P5 : 2
+the burst time for process P5 : 3
+P[4]    |       6       |       0
+P[1]    |       5       |       4
+P[3]    |       4       |       3
+P[5]    |       9       |       6
+P[2]    |       15      |       10
+
+
+ average waiting time = 4.600000
+
+ average turnaround time = 7.800000
+ */

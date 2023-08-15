@@ -33,6 +33,7 @@ int main()
     }
 return 0;
 }
+
 /*Output
 child process:Hello,i am the child!
 child process:My PID is 16193

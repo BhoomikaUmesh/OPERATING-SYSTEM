@@ -58,6 +58,7 @@ void consumer()
     x--;
     mutex=signal(mutex);
 }
+
 /*Output
  1.Producer 
  2.Consumer 
